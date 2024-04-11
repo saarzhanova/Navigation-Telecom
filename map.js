@@ -9,7 +9,7 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 let loader = new THREE.ObjectLoader();
-loader.load('model.json', function(mesh) {
+loader.load('#', function(mesh) {
     scene.add(mesh);
 });
 
