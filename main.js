@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {OBJLoader} from 'three/addons/loaders/OBJLoader.js';
 import {Color} from "three";
 import registerRenderer from "three/addons/libs/lottie_canvas.module";
+import {OrbitControls} from "three/addons/controls/OrbitControls";
 
 const scene = new THREE.Scene();
 scene.background = new Color('grey');
@@ -22,6 +23,9 @@ window.addEventListener('resize', function () {
 
 })
 
+const controls = new OrbitControls( camera, renderer.domElement );
+controls.update();
+
 const gltfloader = new GLTFLoader();
 const urlGLB = 'glb/Telecom.glb';
 
@@ -38,6 +42,7 @@ camera.lookAt(scene.position);
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
+    controls.update();
 }
 
 animate();
