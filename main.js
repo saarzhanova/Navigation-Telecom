@@ -1,12 +1,11 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import {OBJLoader} from 'three/addons/loaders/OBJLoader.js';
 import {Color} from "three";
-import registerRenderer from "three/addons/libs/lottie_canvas.module";
 import {OrbitControls} from "three/addons/controls/OrbitControls";
 
 const scene = new THREE.Scene();
 scene.background = new Color('grey');
+
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 0, 2)
 
@@ -32,7 +31,6 @@ window.addEventListener('resize', function () {
     renderer.setSize(width, height);
     camera.aspect = width/height
     camera.updateProjectionMatrix();
-
 })
 
 const controls = new OrbitControls( camera, renderer.domElement );
@@ -53,8 +51,6 @@ gltfloader.load( urlGLB, function ( gltf ) {
 }, undefined, function ( error ) {
     console.error( error );
 } );
-
-camera.lookAt(scene.position);
 
 function animate() {
     requestAnimationFrame(animate);
