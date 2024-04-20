@@ -8,7 +8,19 @@ import {OrbitControls} from "three/addons/controls/OrbitControls";
 const scene = new THREE.Scene();
 scene.background = new Color('grey');
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 0, 5);
+camera.position.set(0, 0, 2)
+
+// ambient light makes scene more natural
+// for all objects in the scene
+// no direction
+scene.add( new THREE.AmbientLight( 0xffffff, 0.4 ) );
+
+// in specific direction
+// points fron light's position to a target
+// can cast shadows
+const light = new THREE.DirectionalLight(0xffffff);
+light.position.set(5, 5, 2);
+scene.add(light);
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
