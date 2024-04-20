@@ -24,6 +24,11 @@ window.addEventListener('resize', function () {
 })
 
 const controls = new OrbitControls( camera, renderer.domElement );
+controls.enableDamping = false; // true adds inertia (for smooth controlling)
+controls.screenSpacePanning = true; // true - obj moves with mouse, false - only on the level of the camera
+controls.minDistance = 0;
+controls.maxDistance = 100;
+controls.maxPolarAngle = Math.PI / 2; // how far we can rotate object (left click)
 controls.update();
 
 const gltfloader = new GLTFLoader();
