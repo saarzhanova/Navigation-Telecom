@@ -119,7 +119,23 @@ window.addEventListener('click', event => {
     }
 })
 
+// animation
+function move(delta) {
+    if (!navpath || navpath.length <= 0) return;
+
+    let targetPosition = navpath[0];
+    const distance = targetPosition.clone().sub(agentGroup.position)
+    if (distance.lengthSq() > 0.5 * 0.05) {
+        distance.normalize()
+        agentGroup.position.add(distance.multiplyScalar(delta * 5));
+    } else {
+        navpath.shift();
+    }
+}
+
+const clock = new THREE.Clock();
 function animate() {
+    move(clock.getDelta())
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
     controls.update();
