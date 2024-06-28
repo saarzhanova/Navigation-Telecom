@@ -14,8 +14,8 @@ Make sure you have the following installed on your machine:
 1. **Clone the Repository:**
    If you haven't already, clone the repository to your local machine.
    ```bash
-   git clone https://github.com/your-username/your-repository.git
-   cd your-repository
+   git clone https://github.com/saarzhanova/Navigation-Telecom.git
+   cd Navigation-Telecom
 2. **Install Dependencies:**
 Navigate to your project directory and install the necessary dependencies.
 ```bash
