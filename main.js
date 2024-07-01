@@ -92,56 +92,68 @@ scene.add(agentGroup)
 
 
 const gltfloader = new GLTFLoader();
-const urlGLB = 'glb/first_floor_w_two_stairs.glb';
-const firstFloorGLB = 'glb/first_floor_separated.glb';
-const secondFloorGLB = 'glb/second_floor_w_two_stairs_separately.glb';
-const doorURL = 'glb/door.glb';
-const door2URL = 'glb/door2.glb';
-const door3URL = 'glb/door3.glb';
-const urlNavmeshGLB = 'glb/coridor_w_second_floor_w_two_stairs_navmesh.gltf';
 
-let firstFloor
-gltfloader.load( firstFloorGLB, ( gltf ) => {
-    console.log(gltf)
-    firstFloor = gltf.scene.getObjectByName("Plane001");
-    scene.add(firstFloor);
-    firstFloor.material.opacity = 1;
-    firstFloor.material.transparent = true;
-}, undefined, ( error ) => {
-    console.error( error );
-} );
+const urlNavmeshGLB = 'glb/building_navmesh.gltf';
 
-let secondFloor
-gltfloader.load( secondFloorGLB, ( gltf ) => {
-    console.log(gltf)
-    secondFloor = gltf.scene.getObjectByName("Plane003");
-    scene.add(secondFloor);
-    secondFloor.material.opacity = 0.5;
-    secondFloor.material.transparent = true;
-}, undefined, ( error ) => {
-    console.error( error );
-} );
+const urlsDoors = [
+    'glb/door.glb',
+    'glb/door2.glb',
+    'glb/door3.glb',
+];
 
-gltfloader.load( doorURL, ( gltf ) => {
-    let door = gltf.scene
-    scene.add( door);
-}, undefined, ( error ) => {
-    console.error( error );
-} );
+urlsDoors.forEach(url => {
+    gltfloader.load(url, (gltf) => {
+        let object = gltf.scene;
+        scene.add(object);
+    }, undefined, (error) => {
+        console.error(error);
+    });
+});
 
-gltfloader.load( door2URL, ( gltf ) => {
-    let door2 = gltf.scene
-    scene.add( door2);
-}, undefined, ( error ) => {
-    console.error( error );
-} );
+const urlsFloors = [
+    'glb/building/floor1.glb',
+    'glb/building/floor2.glb',
+    'glb/building/floor3.glb',
+    'glb/building/floor4.glb',
+    'glb/building/floor5.glb',
+];
 
-gltfloader.load( door3URL, ( gltf ) => {
-    let door2 = gltf.scene
-    scene.add( door2);
-}, undefined, ( error ) => {
-    console.error( error );
-} );
+
+let floor1
+let floor2
+let floor3
+let floor4
+let floor5
+urlsFloors.forEach(url => {
+    gltfloader.load(url, (gltf) => {
+        let floor
+        if (gltf.scene.getObjectByName("Floor1")) {
+            floor1 = gltf.scene.getObjectByName("Floor1");
+            floor = floor1
+        } else if (gltf.scene.getObjectByName("Floor2")) {
+            floor2 = gltf.scene.getObjectByName("Floor2");
+            floor = floor2
+        } else if (gltf.scene.getObjectByName("Floor3")) {
+            floor3 = gltf.scene.getObjectByName("Floor3");
+            floor = floor3
+        } else if (gltf.scene.getObjectByName("Floor4")) {
+            floor4 = gltf.scene.getObjectByName("Floor4");
+            floor = floor4
+        } else if (gltf.scene.getObjectByName("Floor5")) {
+            floor5 = gltf.scene.getObjectByName("Floor5");
+            floor = floor5
+        }
+        scene.add(floor);
+        if (floor === floor1) {
+            floor.material.opacity = 1;
+        } else {
+            floor.material.opacity = 0.5;
+        }
+        floor.material.transparent = true;
+    }, undefined, (error) => {
+        console.error(error);
+    });
+});
 
 let door_coordinates = {
     "door1": new THREE.Vector3(-2.8050405761298927, 2.1136216852416756, -0.06086446907692),
@@ -298,12 +310,20 @@ function move(delta) {
         navpath.shift();
     }
 
+    let floors = [floor1, floor2, floor3, floor4, floor5]
+    floors.forEach((floor) => {
+        floor.material.opacity = 0.5;
+    })
     if (agentGroup.position.y < 1) {
-        secondFloor.material.opacity = 0.5;
-        firstFloor.material.opacity = 1;
-    } else {
-        secondFloor.material.opacity = 1;
-        firstFloor.material.opacity = 0.5;
+        floor1.material.opacity = 1;
+    } else if (agentGroup.position.y < 4) {
+        floor2.material.opacity = 1;
+    } else if (agentGroup.position.y < 6) {
+        floor3.material.opacity = 1;
+    } else if (agentGroup.position.y < 8) {
+        floor4.material.opacity = 1;
+    } else if (agentGroup.position.y < 10) {
+        floor5.material.opacity = 1;
     }
 }
 
