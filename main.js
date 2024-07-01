@@ -205,10 +205,11 @@ function goByClick() {
 }
 
 function goByAddress() {
-    console.log(event)
+    const selectedDoor = doorsInput.value;
+    // console.log(event)
     let target
-    let doorID = event.target.id
-    switch(doorID) {
+    // let doorID = event.target.id
+    switch(selectedDoor) {
         case '1':
             target = door_coordinates.door1
             break;
@@ -239,6 +240,7 @@ const crossLine2 = new THREE.Mesh(crossCubeGeometryVertical, crossMaterial);
 
 const cross = new THREE.Group();
 cross.rotateX(Math.PI / 2);
+cross.rotateZ(Math.PI / 4);
 cross.rotateZ(Math.PI / 4);
 
 function createPathWithCubes(path) {
@@ -289,10 +291,10 @@ function findPathTo(target) {
     }
 }
 
-let goButton = document.querySelectorAll(".goButton")
-goButton.forEach(button => {
-    button.addEventListener('click', goByAddress)
-});
+let goButton = document.getElementById("searchButton")
+goButton.addEventListener('click', goByAddress);
+let doorsInput = document.getElementById('doors');
+
 
 function move(delta) {
     if (!navpath || navpath.length <= 0) return;
