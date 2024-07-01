@@ -17,30 +17,6 @@
     </datalist>
     <button  class="goButton" id="searchButton">Search</button>
 </div>
-
-<script>
-    document.getElementById('doors').addEventListener('change', function(event) {
-        const selectedOption = event.target.value;
-        switch(selectedOption) {
-            case 'Go to door 1':
-                goToDoor(1);
-                break;
-            case 'Go to door 2':
-                goToDoor(2);
-                break;
-            case 'Go to door 3':
-                goToDoor(3);
-                break;
-            default:
-                console.log('Invalid option selected');
-        }
-    });
-
-    function goToDoor(doorNumber) {
-        console.log(`Navigating to door ${doorNumber}`);
-        // Add your code here to handle the door navigation
-    }
-</script>
 <script type="module" src="main.js"></script>
 </body>
 </html>
