@@ -83,5 +83,5 @@ The project demonstrates the potential of combining Blender and Three.js for pra
 
 ---
 
-To explore the live visualization, visit: [3D Visualization of Telecom Paris](https://saarzhanova.github.io/TelecomParis3DMap)
+To explore the live visualization, visit: [3D Visualization of Telecom Paris](https://saarzhanova.github.io/Navigation-Telecom/)
 
