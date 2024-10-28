@@ -77,4 +77,11 @@ To enable navigation on the platform, a navigation mesh (navmesh) corresponding 
    - Adjust lighting to display the correct colors.
 2. **Changing Path Markers:**
    - The line indicating the path to the target is drawn with PathfindingHelper. As three-pathfinding uses Three mesh objects to visualize the path, it’s possible to define its properties.
-   - To change the target marker, you can create a mesh object, hide the default target marker with `pathfindingHelper._targetMarker.visible = false`, and define define a new one `pathfindingHelper.targetMarker = newMesh`. Access all the path markers in `pathfindingHelper._pathMarker.children`. To define path line material use  `pathfindingHelper._pathLineMaterial`. 
+   - To change the target marker, you can create a mesh object, hide the default target marker with `pathfindingHelper._targetMarker.visible = false`, and define define a new one `pathfindingHelper.targetMarker = newMesh`. Access all the path markers in `pathfindingHelper._pathMarker.children`. To define path line material use  `pathfindingHelper._pathLineMaterial`.
+  
+The project demonstrates the potential of combining Blender and Three.js for practical web-based wayfinding applications in complex indoor spaces.
+
+---
+
+To explore the live visualization, visit: [3D Visualization of Telecom Paris](https://saarzhanova.github.io/TelecomParis3DMap)
+
